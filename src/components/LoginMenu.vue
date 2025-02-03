@@ -12,6 +12,7 @@
       </div>
       <button type="submit" class="animated-button">Войти</button>
     </form>
+
   </div>
 </template>
 
@@ -20,9 +21,13 @@ import axios from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import { ElNotification } from 'element-plus';
 
 export default {
   name: 'LoginMenu',
+  components: {
+    
+  },
   setup() {
     const email = ref('');
     const password = ref('');
@@ -38,9 +43,18 @@ export default {
         const token = response.data.token;
         store.dispatch('login', token);
         router.push('/dashboard');
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Вы успешно вошли в систему!',
+          duration: 2000,
+        });
       } catch (error) {
         console.error('Ошибка входа:', error);
-        alert('Неверный email или пароль');
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Неверный email или пароль',
+          duration: 3000,
+        });
       }
     };
 
@@ -54,6 +68,31 @@ export default {
 </script>
 
 <style scoped>
+/* Глобальные стили для уведомлений */
+.custom-notification {
+  background-color: #000000; /* Черный фон */
+  color: #ffffff; /* Белый текст */
+  border: 1px solid #007bff; /* Синяя рамка */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-notification .el-notification__title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff; /* Белый заголовок */
+}
+
+.custom-notification .el-notification__content {
+  font-size: 14px;
+  color: #ffffff; /* Белый текст */
+}
+
+.custom-notification .el-notification__closeBtn {
+  color: #ffffff; /* Белая кнопка закрытия */
+}
+
+
 .login-menu-container {
   max-width: 400px;
   width: 100%;

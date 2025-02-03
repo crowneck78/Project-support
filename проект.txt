@@ -4,7 +4,34 @@
 Добавить начальную страницу в общем дизайне сайта, добавить переходы к регестрации и логину.
 Оформить логотип для сайта с помощью ИИ, разместить его.
 Уведомления о удалениях, сделать красивыми с анимациями.
+Оформить безопасность для всего сайта
+библеотека nodemailer для проверки по почте
+const nodemailer = require('nodemailer');
 
+// Настройка транспортера
+const transporter = nodemailer.createTransport({
+    service: 'gmail', // или другой почтовый сервис
+    auth: {
+        user: '', // твой email
+        pass: '', // пароль или приложение API
+    },
+});
 
+// Опции письма
+const mailOptions = {
+    from: '', // Отправитель
+    to: '', // Получатель
+    subject: 'Тема письма',
+    text: 'Это текст письма',
+    html: '<p>Это HTML-версия письма</p>',
+};
+
+// Отправка письма
+transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+        return console.log('Ошибка:', error);
+    }
+    console.log('Email отправлен: ' + info.response);
+});
 
 

@@ -255,6 +255,7 @@
 
 <script>
 import axios from 'axios';
+import { ElNotification } from 'element-plus'; // Импортируем ElNotification
 
 export default {
   name: 'DashboardMenu',
@@ -294,6 +295,11 @@ export default {
         this.projects = response.data;
       } catch (error) {
         console.error('Ошибка получения проектов:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось загрузить проекты.',
+          duration: 3000,
+        });
       } finally {
         this.isLoading = false; // Загрузка завершена
       }
@@ -307,8 +313,18 @@ export default {
         this.newProject.name = '';
         this.newProject.description = '';
         this.fetchProjects();
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Проект успешно создан!',
+          duration: 3000,
+        });
       } catch (error) {
         console.error('Ошибка создания проекта:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось создать проект.',
+          duration: 3000,
+        });
       }
     },
     selectProject(project) {
@@ -330,8 +346,18 @@ export default {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         this.fetchProjects();
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Проект успешно удален!',
+          duration: 3000,
+        });
       } catch (error) {
         console.error('Ошибка удаления проекта:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось удалить проект.',
+          duration: 3000,
+        });
       }
     },
     async fetchTeamUsers(projectId) {
@@ -342,6 +368,11 @@ export default {
         this.teamUsers = response.data;
       } catch (error) {
         console.error('Ошибка получения пользователей проекта:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось загрузить участников проекта.',
+          duration: 3000,
+        });
       }
     },
     async fetchTasks(projectId) {
@@ -352,11 +383,20 @@ export default {
         this.tasks = response.data;
       } catch (error) {
         console.error('Ошибка получения задач проекта:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось загрузить задачи проекта.',
+          duration: 3000,
+        });
       }
     },
     async addUserToTeam() {
       if (!this.isOwner()) {
-        alert('Только владелец проекта может добавлять новых пользователей.');
+        ElNotification.warning({
+          title: 'Предупреждение',
+          message: 'Только владелец проекта может добавлять новых пользователей.',
+          duration: 3000,
+        });
         this.showAddUserToTeamForm = false;
         return;
       }
@@ -365,7 +405,11 @@ export default {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         if (response.data.length === 0) {
-          alert('Пользователь с таким email не найден.');
+          ElNotification.warning({
+            title: 'Предупреждение',
+            message: 'Пользователь с таким email не найден.',
+            duration: 3000,
+          });
           return;
         }
         const userId = response.data[0].id;
@@ -376,11 +420,20 @@ export default {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
           }
         );
-        alert('Пользователь добавлен в команду.');
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Пользователь добавлен в команду.',
+          duration: 3000,
+        });
         this.fetchTeamUsers(this.selectedProject.id);
         this.showAddUserToTeamForm = false;
       } catch (error) {
         console.error('Ошибка добавления пользователя в команду:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось добавить пользователя в команду.',
+          duration: 3000,
+        });
       }
     },
     async removeUserFromTeam(userId) {
@@ -389,9 +442,19 @@ export default {
         await axios.delete(`http://localhost:5000/projects/${this.selectedProject.id}/users/${userId}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Пользователь удален из команды.',
+          duration: 3000,
+        });
         this.fetchTeamUsers(this.selectedProject.id);
       } catch (error) {
         console.error('Ошибка удаления пользователя из команды:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось удалить пользователя из команды.',
+          duration: 3000,
+        });
       }
     },
     async createTask() {
@@ -404,8 +467,18 @@ export default {
         this.newTask.description = '';
         this.newTask.due_date = '';
         this.fetchTasks(this.selectedProject.id);
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Задача успешно создана!',
+          duration: 3000,
+        });
       } catch (error) {
         console.error('Ошибка создания задачи:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось создать задачу.',
+          duration: 3000,
+        });
       }
     },
     async markTaskAsCompleted(taskId) {
@@ -413,9 +486,19 @@ export default {
         await axios.patch(`http://localhost:5000/tasks/${taskId}/complete`, {}, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Задача помечена как выполненная!',
+          duration: 3000,
+        });
         this.fetchTasks(this.selectedProject.id);
       } catch (error) {
         console.error('Ошибка изменения статуса задачи:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось изменить статус задачи.',
+          duration: 3000,
+        });
       }
     },
     async markTaskAsInProgress(taskId) {
@@ -423,9 +506,19 @@ export default {
         await axios.patch(`http://localhost:5000/tasks/${taskId}/in-progress`, {}, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Задача помечена как "в процессе".',
+          duration: 3000,
+        });
         this.fetchTasks(this.selectedProject.id);
       } catch (error) {
         console.error('Ошибка изменения статуса задачи:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось изменить статус задачи.',
+          duration: 3000,
+        });
       }
     },
     async deleteTask(taskId) {
@@ -434,9 +527,19 @@ export default {
         await axios.delete(`http://localhost:5000/tasks/${taskId}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Задача успешно удалена!',
+          duration: 3000,
+        });
         this.fetchTasks(this.selectedProject.id);
       } catch (error) {
         console.error('Ошибка удаления задачи:', error);
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось удалить задачу.',
+          duration: 3000,
+        });
       }
     },
     async saveProjectDetails() {
@@ -451,10 +554,18 @@ export default {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
           }
         );
-        alert('Изменения успешно сохранены!');
+        ElNotification.success({
+          title: 'Успех',
+          message: 'Изменения успешно сохранены!',
+          duration: 3000,
+        });
       } catch (error) {
         console.error('Ошибка при сохранении изменений:', error);
-        alert('Не удалось сохранить изменения.');
+        ElNotification.error({
+          title: 'Ошибка',
+          message: 'Не удалось сохранить изменения.',
+          duration: 3000,
+        });
       }
     },
     toggleAddUserToTeamForm() {
@@ -474,7 +585,11 @@ export default {
       return this.teamUsers.some(user => user.id === this.currentUserId); // Проверяем, является ли текущий пользователь участником проекта
     },
     viewTaskDetails(task) {
-      alert(`Описание задачи:\n${task.description || 'Нет описания'}`);
+      ElNotification.info({
+        title: 'Описание задачи',
+        message: task.description || 'Нет описания',
+        duration: 5000,
+      });
     }
   },
   mounted() {
@@ -482,7 +597,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 
 .task-item {
