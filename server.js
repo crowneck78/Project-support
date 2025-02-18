@@ -13,7 +13,7 @@ app.use(cors());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'qwerty050', // Убедитесь, что пароль соответствует вашему паролю от MySQL
+  password: 'root', // Убедитесь, что пароль соответствует вашему паролю от MySQL
   database: 'project_management'
 });
 

@@ -35,3 +35,4 @@ transporter.sendMail(mailOptions, (error, info) => {
 });
 
 
+переделать лендинг, перенести элементы в центровой вид. Убрать хэдэр,

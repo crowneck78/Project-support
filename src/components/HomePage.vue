@@ -1,67 +1,22 @@
 <template>
+ <div class="fullscreen-gradient"></div>
   <div id="home-page">
-    <div class="background-container" :style="backgroundStyle"></div>
-    <!-- Герой -->
     <section class="hero-section">
-      <div class="content-wrapper">
-        <div class="left-content">
-          <h1 class="site-title">TeamSyncer</h1>
+      <div class="circle">
+  <div class="wave"></div>
+</div>
+      <div class="right-content">
+          <p class="welcome-text">Управляйте своими проектами</p>
         </div>
-        <div class="right-content">
-          <p class="welcome-text">Войдите или зарегистрируйтесь:</p>
-          <div class="buttons">
-            <router-link to="/login" class="animated-button">Войти</router-link>
-            <router-link to="/register" class="animated-button">Регистрация</router-link>
-          </div>
-        </div>
-      </div>
-      <!-- Раздел с кнопками информации -->
-      <div class="info-buttons">
-        <button @click="toggleInfo('about')" @mouseover="showInfo('about')" @mouseleave="hideInfo('about')" :class="{ active: activeInfo === 'about' }" class="info-button">О нас</button>
-        <button @click="toggleInfo('features')" @mouseover="showInfo('features')" @mouseleave="hideInfo('features')" :class="{ active: activeInfo === 'features' }" class="info-button">Наши возможности</button>
-        <button @click="toggleInfo('instructions')" @mouseover="showInfo('instructions')" @mouseleave="hideInfo('instructions')" :class="{ active: activeInfo === 'instructions' }" class="info-button">Инструкция</button>
-      </div>
-      <!-- Информация О нас -->
-      <transition name="fade">
-        <div v-if="activeInfo === 'about'" class="info-text">
-          <h2>О нас</h2>
-          <p>TeamSyncer — это современная платформа для управления проектами, разработанная для повышения производительности и координации работы команд. Мы понимаем, что успешное выполнение проектов требует не только эффективного планирования, но и четкого взаимодействия между всеми участниками. Наш сервис предлагает все необходимые инструменты для достижения этих целей.</p>
-        </div>
-      </transition>
-      <!-- Информация Наши возможности -->
-      <transition name="fade">
-        <div v-if="activeInfo === 'features'" class="info-text">
-          <h2>Наши возможности</h2>
-          <ul>
-            <li><strong>Создание и управление проектами:</strong> Создавайте новые проекты, добавляйте описание и управляйте их статусом. Наши инструменты позволяют легко редактировать и обновлять информацию о проектах в любое время.</li>
-            <li><strong>Управление командой:</strong> Пригласите новых участников в свой проект и назначьте им роли. Управляйте доступом к проектам и контролируйте активность каждого члена команды.</li>
-            <li><strong>Создание и отслеживание задач:</strong> Создавайте задачи для каждого проекта, назначайте их исполнителям и отслеживайте прогресс. Вы можете добавлять дедлайны, описания и приоритеты для каждой задачи.</li>
-            <li><strong>Координация работы:</strong> Наша платформа позволяет легко координировать работу всей команды, обеспечивая прозрачность и контроль над всеми аспектами проекта. Всегда будьте в курсе того, кто выполняет какую задачу и когда она будет завершена.</li>
-            <li><strong>Интеграция с системами контроля версий:</strong> TeamSyncer поддерживает интеграцию с такими популярными системами контроля версий, как GitHub, Subversion и Mercurial. Это позволяет вам легко управлять изменениями в коде и документации, а также отслеживать историю изменений.</li>
-            <li><strong>Отчеты и аналитика:</strong> Получайте подробные отчеты о состоянии ваших проектов и задач. Наша аналитика поможет вам принимать более обоснованные решения и оптимизировать рабочие процессы.</li>
-            <li><strong>Удобный интерфейс:</strong> Интуитивно понятный интерфейс TeamSyncer делает управление проектами простым и удобным. Независимо от вашего уровня подготовки, вы сможете быстро освоиться и начать продуктивную работу.</li>
-            <li><strong>Поддержка различных устройств:</strong> Наш сайт адаптирован для использования на различных устройствах, включая мобильные телефоны и планшеты. Работайте с проектами в любом месте и в любое время.</li>
-          </ul>
-        </div>
-      </transition>
-      <!-- Инструкция -->
-      <transition name="fade">
-        <div v-if="activeInfo === 'instructions'" class="info-text">
-          <h2>Инструкция</h2>
-          <p>Чтобы начать пользоваться нашей платформой для управления проектами, следуйте этим шагам:</p>
-          <ol>
-            <li>Зарегистрируйтесь или войдите в свою учетную запись.</li>
-            <li>Создайте новый проект, указав его название и описание.</li>
-            <li>Добавьте участников в ваш проект и назначьте им роли.</li>
-            <li>Создайте задачи для каждого проекта, назначьте их исполнителям и установите дедлайны.</li>
-            <li>Отслеживайте прогресс выполнения задач и проектов в реальном времени.</li>
-            <li>Используйте наши интеграции с системами контроля версий для управления изменениями в коде и документации.</li>
-            <li>Анализируйте отчеты и используйте данные для оптимизации процессов.</li>
-          </ol>
-          <p>Наша платформа позволяет вам легко и удобно управлять всеми аспектами проекта, обеспечивая высокую продуктивность и прозрачность.</p>
-        </div>
-      </transition>
-      <h2 class="main-text">Мы работаем с:</h2>
+        <div class="info-text">
+          <p>TeamSyncer — это современная платформа для управления проектами, разработанная для повышения производительности и координации работы команд. </p>
+        </div>  
+        <div class="image-container">
+  <div class="image-wrapper">
+    <img src="@/assets/version.png" alt="Версия программы" class="app-version-image" />
+  </div>
+</div>
+      <h2 class="main-text">Ваши проекты можно интегрировать из:</h2>
       <div class="features-grid">
         <div class="feature-item">
           <a href="https://github.com" target="_blank">
@@ -77,41 +32,7 @@
         </div>
       </div>
     </section>
-    <!-- Раздел отзывов -->
-    <section class="testimonials-section">
-      <div class="container">
-        <h2 class="main-text">Отзывы наших клиентов</h2>
-        <div class="testimonials-grid">
-          <div class="testimonial-item">
-            <p class="main-text">"Это лучший сервис, который я когда-либо использовал! Он помог мне организовать мою команду и значительно повысить продуктивность."</p>
-            <h4 class="main-text">Иван Иванов</h4>
-          </div>
-          <div class="testimonial-item">
-            <p class="main-text">"Я очень доволен работой этой команды. Все функции работают безупречно, и это значительно облегчило нам жизнь."</p>
-            <h4 class="main-text">Мария Петрова</h4>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Раздел команды -->
-    <section class="team-section">
-      <div class="container">
-        <h2 class="main-text">Наша команда</h2>
-        <div class="team-grid">
-          <div class="team-member">
-            <img src="" alt="Team Member 1">
-            <h4 class="main-text">Алексей Смирнов</h4>
-            <p class="main-text">Основатель и CEO</p>
-          </div>
-          <div class="team-member">
-            <img src="" alt="Team Member 2">
-            <h4 class="main-text">Екатерина Иванова</h4>
-            <p class="main-text">Руководитель отдела разработки</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+  </div>  
 </template>
 
 <script>
@@ -125,20 +46,7 @@ export default {
     };
   },
   computed: {
-    backgroundStyle() {
-      return {
-        backgroundImage: `url(${this.backgroundImageUrl})`,
-        backgroundSize: 'cover', // Масштабирует фон так, чтобы он покрывал весь контейнер
-        backgroundPosition: 'center', // Центрирует фон
-        backgroundRepeat: 'no-repeat', // Убирает повторение фона
-        width: '100%', // Полная ширина
-        height: '100vh', // Полная высота экрана
-        position: 'fixed', // Фиксированное позиционирование
-        top: 0, // Позиция от верхнего края
-        left: 0, // Позиция от левого края
-        zIndex: -1 // Помещает фон за остальные элементы
-      };
-    }
+    
   },
   methods: {
     showInfo(info) {
@@ -165,19 +73,108 @@ export default {
 </script>
 
 <style scoped>
-/* Подключение шрифта Docker */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300;400;500;600;800&display=swap');
 
+*, *:before, *:after{
+  margin:0;
+  padding: 0;
+  box-sizing:border-box;
+}
+.circle{
+  margin-left:600px;
+  margin-top:200px;
+  position: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  border: 5px solid #FFFFFF;
+  box-shadow: 0 0 0 5px #4973ff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.wave{
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #2C74B3;
+  border-radius: 50%;
+  box-shadow: inset 0 0 50px 0 rgba(0, 0, 0, 0.5);
+}
+.wave:before,
+.wave:after{
+  content:'';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: black;
+  transform: translate(-50%, -75%);
+}
+.wave:before{
+  border-radius: 45%;
+  background: rgba(255, 255, 255, 1);
+  animation: animate 5s linear infinite;
+}
+.wave:after{
+  border-radius: 40%;
+  background: rgba(255, 255, 255, 0.5);
+  animation: animate 10s linear infinite;
+}
+
+@keyframes animate{
+  0%{
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100%{
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
 
 /* Глобальные стили */
 body, html {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: 'Roboto', sans-serif; /* Единый шрифт */
   color: #333; /* Единый цвет текста */
 }
+
+.fullscreen-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, #ffffff, #cce7ff);
+  z-index: -1; /* Чтобы не перекрывал контент */
+}
+
+/* Контейнер для изображения */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  border-color:#000000;
+  border-radius: 50px;
+}
+.app-version-image {
+  display: block;
+  width: 250%; /* Увеличиваем в 2,5 раза */
+  max-width: 1250px; /* Ограничение по ширине */
+  border-radius: 40px; /* Закруглённые углы */
+  border: 5px solid black; /* Чёрная обводка */
+}
+
+
 
 /* Убираем отступы у фоновой картинки */
 #home-page {
@@ -191,56 +188,51 @@ body, html {
 
 /* Установка единого цвета и шрифта для текста */
 .main-text {
+  margin-top: 50px;
   font-family: 'Roboto', sans-serif; /* Единый шрифт */
-  color: #1d67ac; /* Единый цвет текста */
+  color: #000000; /* Единый цвет текста */
 }
 
 /* Если есть другие специфичные классы или элементы, добавляем их здесь */
 h2.main-text, h4.main-text, p.main-text {
   font-family: 'Roboto', sans-serif; /* Единый шрифт */
-  color: #1368b2; /* Единый цвет текста */
+  color: #000000; /* Единый цвет текста */
 }
 
 .hero-section {
   padding: 0; /* Убираем отступы сверху и снизу для секции героя */
   text-align: center; /* Центрируем текст внутри секции героя */
-  width: 100%;
   box-sizing: border-box;
 }
 
-.content-wrapper {
-  max-width: 1200px;
-  margin: 0 auto; /* Центрируем контент по горизонтали */
-  display: flex;
-  justify-content: space-between; /* Располагаем блоки по краям (можно изменить на center для центрирования) */
-  align-items: center; /* Выравнивание вертикальное по центру */
-  padding: 0; /* Убираем отступы слева и справа для контента */
+.logo-svg {
+  width: 300px; /* Размер логотипа */
+  height: auto; /* Сохранение пропорций */
+  max-width: 100%;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2)); /* Тень */
+  transition: transform 0.3s ease;
 }
 
-
+.logo-svg:hover {
+  transform: scale(1.1); /* Увеличение при наведении */
+}
 .left-content{
-  width: 50%; /* Ширина каждого блока */
+  width: 100%; /* Ширина каждого блока */
   display: flex;
   flex-direction: column;
   align-items: center; /* Горизонтальное выравнивание содержимого */
   text-align: center; /* Центрируем текст внутри блоков */
-  padding: 40px; /* Добавляем внутренние отступы для блоков */
 }
 
 .right-content {
-  width: 50%; /* Ширина каждого блока */
-  
+  width: 100%; 
   flex-direction: column;
-   /* Горизонтальное выравнивание содержимого */
- /* Центрируем текст внутри блоков */
-  /* Добавляем внутренние отступы для блоков */
 }
 
 .site-title {
   font-size: 6em; /* Размер шрифта */
   font-weight: bold; /* Жирный шрифт */
-  margin-right: 300px;
-  margin-bottom: 50px; /* Отступ снизу от заголовка */
+  margin-top: 150px; /* Отступ снизу от заголовка */
   color: black; /* Цвет текста */
   background: linear-gradient(to right, black, #007bff); /* Градиент для эффекта */
   -webkit-background-clip: text; /* Применяем градиент к тексту */
@@ -258,21 +250,15 @@ h2.main-text, h4.main-text, p.main-text {
 .welcome-text {
   font-size: 3em; /* Размер шрифта */
   font-weight: bold; /* Жирный шрифт */
-  margin-bottom: 20px; /* Отступ снизу от текста */
-  color: rgb(31, 82, 190); /* Цвет текста */
-  margin-left:200px;
+  margin-bottom: 30px; /* Отступ снизу от текста */
+  color: rgb(0, 0, 0); /* Цвет текста */
 }
 
 .buttons {
   display: flex;
   justify-content: center; /* Центрируем кнопки */
-  gap: 20px; /* Отступ между кнопками */
-  margin-top: 20px; /* Отступ сверху от кнопок */
-  margin-left:200px;
-}
-
-.animated-button {
-  padding: 12px 20px; /* Внутренние отступы кнопок */
+  gap: 100px; /* Отступ между кнопками */
+  padding: 16px 50px; /* Внутренние отступы кнопок */
   background-color: #007bff; /* Фон кнопок */
   color: white; /* Цвет текста кнопок */
   border: none; /* Убираем границу */
@@ -281,9 +267,18 @@ h2.main-text, h4.main-text, p.main-text {
   transition: background-color 0.3s ease, transform 0.3s ease; /* Анимация перехода */
   font-size: 16px; /* Размер шрифта */
   text-decoration: none; /* Убираем подчеркивание ссылок */
+  font-style: bold; 
+  margin-top: 30px;
 }
 
-.animated-button:hover {
+.mainbuttons{
+  display: flex;          /* Включаем flexbox */
+  gap: 100px;              /* Расстояние между кнопками */
+  justify-content: center; /* Выравнивание по центру */
+  align-items: center;    /* Выравнивание по вертикали */
+}
+
+.buttons:hover {
   background-color: #0056b3; /* Изменение цвета фона при наведении */
   transform: scale(1.05); /* Масштабирование при наведении */
 }
@@ -320,7 +315,6 @@ h2.main-text, h4.main-text, p.main-text {
 .features-grid {
   display: flex;
   justify-content: center; /* Центрируем логотипы */
-  flex-wrap: wrap; /* Перенос элементов на новую строку при необходимости */
   margin-bottom: 40px; /* Отступ снизу от сетки */
   gap: 40px; /* Отступ между элементами */
 }
@@ -357,12 +351,12 @@ h2.main-text, h4.main-text, p.main-text {
 
 .about-text, .info-text {
   font-size: 1.5em;
-  margin-top: 40px; /* Отступ сверху от текста */
+  margin-top: 20px; /* Отступ сверху от текста */
   max-width: 800px; /* Максимальная ширина текста */
   margin-left: auto; /* Выравнивание слева */
   margin-right: auto; /* Выравнивание справа */
   text-align: left; /* Выравнивание текста слева */
-  color: #1368b2; /* Цвет текста */
+  color: #616166; /* Цвет текста */
   font-weight: bold; /* Жирный шрифт */
 }
 

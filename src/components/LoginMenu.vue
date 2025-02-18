@@ -68,7 +68,6 @@ export default {
 </script>
 
 <style scoped>
-/* Глобальные стили для уведомлений */
 .custom-notification {
   background-color: #000000; /* Черный фон */
   color: #ffffff; /* Белый текст */
